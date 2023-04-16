@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Archive
-        run: tar -czvf upload.tar.gz -C . .
+        run: tar -czvf upload.tar.gz -C . *
 
       - name: Release
         run: 'curl -X POST -H "Authorization: Bearer ${{ secrets.DEPLOY }}" -F "upload=@upload.tar.gz" "https://sites.mrmelon54.com/u?site=kikicat123.ca&branch=${{ github.ref_name }}"'
