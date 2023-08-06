@@ -4,6 +4,7 @@ function loadPrices() {
   for (var i = 0; i < gp.length; i++) {
     gpid.push(gp[i].getAttribute("data-game-id"));
     gp[i].setAttribute("data-original-price", gp[i].textContent);
+    gp[i].setAttribute("title", "Original price: " + gp[i].textContent);
   }
   var x = new XMLHttpRequest();
   x.open("GET", "https://api.kikicat123.ca/v1/sapi/appdetails?filters=price_overview&cc=CA&appids=" + gpid.join(","));
@@ -14,7 +15,7 @@ function loadPrices() {
         var k = j[gp[i].getAttribute("data-game-id")];
         if (k.success && k.data.price_overview.currency == "CAD") {
           gp[i].setAttribute("data-current-price", k.data.price_overview.final);
-          gp[i].textContent = "(" + formattedPrice(k.data.price_overview.final) + ")";
+          gp[i].textContent = formattedPrice(k.data.price_overview.final);
         }
       }
     }
