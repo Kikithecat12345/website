@@ -1,5 +1,6 @@
 const totalPriceEl = document.getElementById("game-price-total");
 const gp = document.getElementsByClassName("game-price");
+const globalCheckbox = document.getElementById("global-checkbox");
 
 var priceData = [];
 
@@ -12,11 +13,16 @@ function loadPrices() {
     };
     priceData.push(tick);
     tick.el.setAttribute("data-original-price", tick.price);
-    tick.el.setAttribute("title", "Original price: " + tick.price);
+    tick.el.setAttribute("title", "Original price: " + formattedPrice(tick.price));
     tick.check = document.createElement("input");
     tick.check.setAttribute("type", "checkbox");
     tick.check.setAttribute("checked", "checked");
     tick.check.addEventListener("change", function () {
+      var checkedLen = priceData.filter(function (x) {
+        return x.check.checked;
+      }).length;
+      globalCheckbox.checked = checkedLen === priceData.length;
+      globalCheckbox.indeterminate = checkedLen > 0 && checkedLen < priceData.length;
       updateTotalPrice();
     });
     tick.el.parentNode.parentNode.insertBefore(tick.check, tick.el.parentNode.nextSibling);
@@ -68,8 +74,9 @@ function updateTotalPrice() {
 }
 
 function formattedPrice(x) {
-  x = x.toString();
-  return "C$" + x.slice(0, -2) + "." + x.slice(-2);
+  var high = Math.floor(x / 100);
+  var low = (x % 100);
+  return "C$" + high.toString() + "." + (low < 10 ? '0' : '') + low.toString();
 }
 
 function parseFormattedPrice(x) {
@@ -77,6 +84,17 @@ function parseFormattedPrice(x) {
   return parseInt(x.slice(2).split(".").join(""));
 }
 
+function tickAll(checked) {
+  for(var i = 0; i < priceData.length; i++) {
+    priceData[i].check.checked = checked;
+  }
+}
+
 window.addEventListener("load", function () {
   loadPrices();
+
+  globalCheckbox.addEventListener("change", function() {
+    tickAll(globalCheckbox.checked);
+    updateTotalPrice();
+  });
 });
