@@ -16,7 +16,7 @@ function loadPrices() {
     tick.el.setAttribute("title", "Original price: " + formattedPrice(tick.price));
     tick.check = document.createElement("input");
     tick.check.setAttribute("type", "checkbox");
-    tick.check.setAttribute("checked", "checked");
+    tick.check.checked = false;
     tick.check.addEventListener("change", function () {
       var checkedLen = priceData.filter(function (x) {
         return x.check.checked;
@@ -93,6 +93,7 @@ function tickAll(checked) {
 window.addEventListener("load", function () {
   loadPrices();
 
+  globalCheckbox.checked = false;
   globalCheckbox.addEventListener("change", function() {
     tickAll(globalCheckbox.checked);
     updateTotalPrice();

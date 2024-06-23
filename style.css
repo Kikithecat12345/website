@@ -1,0 +1,34 @@
+:root {
+  color-scheme: dark light;
+}
+
+@media(prefers-color-scheme: dark) {
+  body{
+    color: #dddddd;
+    background-color: #1c1b22;
+  }
+  a {
+    color:tomato;
+  }
+}
+
+@media(prefers-color-scheme: light) {
+  a {
+    color: rebeccapurple;
+  }
+}
+
+body {
+  font-family: 'Iosevka', 'FiraCode Nerd Font', 'Ubuntu Mono', monospace;
+}
+
+@font-face {
+  font-family: "Iosevka";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('IosevkaCustomNerdFont-Regular.ttf') format('truetype');
+}
+
+.game-price:before{content:"(";}
+.game-price:after{content:")";}
