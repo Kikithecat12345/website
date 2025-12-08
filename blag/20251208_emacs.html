@@ -1,0 +1,34 @@
+<meta charset="UTF-8">
+<title>Kiki's Interblag - Adventures in Emacs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<h1>2025/12/08 - Adventures in Emacs</h1>
+So, I decided to switch to Emacs a while ago, and this is my opinions so far. <br />
+<br />
+Let's start with my config: I am running <a href="https://github.com/doomemacs/doomemacs">Doom Emacs</a> with minimal extra configuration:
+<ul>
+  <li>I have disabled Evil mode (Vim keybindings)</li>
+  <li>I added a few packages and changed a few things (fonts, etc.)</li>
+  <li>I have enabled quite a few of the modules.</li>
+</ul>
+<br />
+Okay, but what do I think? Let's start with the bad: <br />
+<ul>
+  <li>The keybinds are nonstandard. This one is justified given both the age of Emacs and the fact that it was originally in a terminal so it was limited in some ways. In some ways, this is a good thing - For example, <code>C-p</code>, <code>C-n</code>, <code>C-b</code>, and <code>C-f</code> are closer than the arrow keys and can be combined with <code>C-u</code> (Numeric prefix argument) to go far with few keystokes. (<code>C-u 1 5 C-n</code>will move point 15 lines down.)</li>
+  <li>The config that comes with Emacs out of the box, sucks. It's a lot of work to bring Emacs up to "modern IDE" standards from a blank config. Things like Language Servers, autocomplete in buffers, etc., are not included.  Doom Emacs fixes this, however.</li>
+  <li>Loading from a config makes it reproducible, but the built-in package management is messy and sucks, and configs tend to get unmaintainable quickly. Again, Doom Emacs "fixes" this by bringing you to a reasonable default and only requiring smaller, more maintainable changes (in most cases.)</li>
+  <li>By default, the undo is confusing. I understand (and love) that the idea is you can undo and redo without losing anything, but <code>vundo</code> or <code>undo-tree</code> should probably be merged into it. Adding undos to the undo stack is weird.</li>
+  <li>ELisp is a weird old language with the weird old quirks to boot. It's like haskell, and Lambda calculus-y, and while I got used to it, and I don't *hate* it, it's still weird. 
+</ul>
+
+And now, the good:
+
+<ul>
+  <li>The extensibility is insane. I don't think any other application is as modifiable as Emacs. Don't like something? Install an extension, or write one in ELisp to partially or completely change it by modifying the source code on-the-fly.</li>
+  <li>Inbuilt documentation is really good, to the point that it's just a matter of *finding* what you are looking for. It's also cool that a lot of the docs can be auto-generated from the actual code.</li>
+  <li>Emacs Calc is very useful. It's no <a href="//frinklang.org">Frink</a>, but it's also not  a full-blown language of it's own. It's very powerful, and the RPN nature of it makes it very versatile. I also like that it's integrated into a lot of parts of Emacs.</li>
+  <li>Dired is also very cool. When combined with the very powerful regex or ELisp find-and-replace, Bulk renaming of files goes from "guess i'm installing something special for this/writing a shell script" to a simple (with the right extensions, live editable) regex/ELisp program for entire directories and subdirectories.</li>
+  <li><code>org-mode</code> is objectively the best way to take notes I've ever seen. Automatic formatting, indexing, and referencing of notes is incredible, and having inline rendered LaTeX or tables that can be gnuplot'd at a moment's notice, or even formulas that use Calc for those tables, or many, many other things that having an exhaustive list of it is infeasible.</li>
+</ul>
+Overall, I'm really happy with Emacs, and I don't think I'll be switching anytime soon. It has supplanted all of my text editing, with the exception of the fangled electronic mail (I'm still using Thunderbird) and quick terminal edits / terminal Git commits (nano loads up way faster than even the Emacs client, and therefore wins) but for everything else it's the tool of choice. It's *way* better than VSCode (especially with how AI-riddled it is now) and unless I need to edit a Word Doc it's perfectly featured once configured and 100% customisable to my liking. 
